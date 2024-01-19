@@ -1,0 +1,136 @@
+[
+  {
+    "Name": "ActivateCampaigns",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE_Activate_Campaigns",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "Deactivate_Campaign_Agent",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE_Deactivate_Campaigns",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "CAE_DIBatch_Results",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE_DI_Batch_Results",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "PCPDataSynch",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE_PCPDataSynch",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "CAE_UID1267_Member_MED_Reversal",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE1267_Member_Med_Reversal",
+        "Parameters": [
+          {
+            "Parameter": "userid",
+            "Value": "UID_1267"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "CAE_UID1268_Member_Indicator_RRP",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE1268_MemberIndicatorRRP",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "CAE_UID1340_BRS_Look_Up_Table_Clean_Up",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE1340_BRSLookUpTableCleanUp",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "UpdateIsEligible",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE_UpdateIsEligible",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "CAE1342_MemberMedicationDuplicateInactivation",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE1342_MemberMedicationInactivateDuplicates",
+        "Parameters": [
+          {
+            "Parameter": "username",
+            "Value": "UID1342"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Name": "usp_CAE1321_PNAnnotationCommitReport",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CAE1321_PNAnnotationCommitReport",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "CMTaskSelector",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_CMTaskSelector_GetDualsMembersWithSuccessfulHRA",
+        "Parameters": []
+      },
+      {
+        "Name": "​​​​​​​usp_CMTaskSelector_GetDualsMembersWithReturnedHRA",
+        "Parameters": []
+      }
+    ]
+  },
+  {
+    "Name": "DeemingPeriodAlerts",
+    "BreakOnPartialSuccess": "False",
+    "StoredProcedureDefinitions": [
+      {
+        "Name": "usp_DeemingPeriod_CreateAndDismissMemberAlerts",
+        "Parameters": []
+      }
+    ]
+  }
+]

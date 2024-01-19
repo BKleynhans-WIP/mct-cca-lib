@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net7.0</TargetFramework>
+		<AssemblyVersion>1.0.0.3</AssemblyVersion>
+		<!-- The following entry suppresses warnings related to Microsoft.Extensions.DependencyInjection.Abstractions 7.0.0 
+				which is not officially supported by .NET Core 3.1 -->
+		<SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\MCT.CCAlib\MCT.CCAlib.csproj" />
+	</ItemGroup>
+
+	<!--groups appsettings files for environments under appsettings.json-->
+	<ItemGroup>
+		<Content Include="appsettings.*.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<DependentUpon>appsettings.json</DependentUpon>
+		</Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Update="appsettings.debug.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="appsettings.dev.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="appsettings.prd.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="appsettings.trn.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="appsettings.tst.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="appsettings.uat.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

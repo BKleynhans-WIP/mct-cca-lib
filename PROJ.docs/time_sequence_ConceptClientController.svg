@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="757px" preserveAspectRatio="none" style="width:1521px;height:757px;" version="1.1" viewBox="0 0 1521 757" width="1521px" zoomAndPan="magnify"><defs><filter height="300%" id="f1phipnkrfldct" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="478" x="522" y="22.9951">"CCAlib - ConceptClientController - Time Sequence Diagram"</text><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="614.2656" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="245.5" y="84.5938"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="137.8594"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="327.4609"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="517.0625"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="166.9922"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="356.5938"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="546.1953"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="196.125"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="385.7266"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="575.3281"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="571.1328" style="stroke: #000000; stroke-width: 2.0;" width="1360" x="149" y="99.5938"/><rect fill="#FFFFFF" height="189.6016" style="stroke: none; stroke-width: 1.0;" width="1360" x="149" y="291.5234"/><rect fill="#FFFFFF" height="189.6016" style="stroke: none; stroke-width: 1.0;" width="1360" x="149" y="481.125"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="67" x2="67" y1="68.5938" y2="716.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="250" x2="250" y1="68.5938" y2="716.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="962" x2="962" y1="68.5938" y2="716.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1302" x2="1302" y1="68.5938" y2="716.8594"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="1431" x2="1431" y1="68.5938" y2="716.8594"/><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="115" x="8" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="15" y="53.292">CallingSolution</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="115" x="8" y="715.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="101" x="15" y="735.8545">CallingSolution</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="179" x="159" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="165" x="166" y="53.292">ConceptClientController</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="179" x="159" y="715.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="165" x="166" y="735.8545">ConceptClientController</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="123" x="899" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="906" y="53.292">ConceptService</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="123" x="899" y="715.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="109" x="906" y="735.8545">ConceptService</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="99" x="1251" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="1258" y="53.292">BaseService</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="99" x="1251" y="715.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="85" x="1258" y="735.8545">BaseService</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="131" x="1364" y="33.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="117" x="1371" y="53.292">ManagedCareAPI</text><rect fill="#FEFECE" filter="url(#f1phipnkrfldct)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="131" x="1364" y="715.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="117" x="1371" y="735.8545">ManagedCareAPI</text><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="614.2656" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="245.5" y="84.5938"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="137.8594"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="327.4609"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="145.6641" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="957.5" y="517.0625"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="166.9922"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="356.5938"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="87.3984" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1297.5" y="546.1953"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="196.125"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="385.7266"/><rect fill="#FFFFFF" filter="url(#f1phipnkrfldct)" height="29.1328" style="stroke: #A80036; stroke-width: 1.0;" width="10" x="1426.5" y="575.3281"/><polygon fill="#A80036" points="233.5,80.5938,243.5,84.5938,233.5,88.5938,237.5,84.5938" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="67.5" x2="239.5" y1="84.5938" y2="84.5938"/><path d="M149,99.5938 L213,99.5938 L213,106.5938 L203,116.5938 L149,116.5938 L149,99.5938 " fill="#EEEEEE" style="stroke: #000000; stroke-width: 1.0;"/><rect fill="none" height="571.1328" style="stroke: #000000; stroke-width: 2.0;" width="1360" x="149" y="99.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="19" x="164" y="112.6606">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="144" x="228" y="111.8042">[Get member Concept]</text><polygon fill="#A80036" points="945.5,133.8594,955.5,137.8594,945.5,141.8594,949.5,137.8594" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="255.5" x2="951.5" y1="137.8594" y2="137.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="329" x="262.5" y="132.7935">GetConceptSync&lt;APIResponse&gt;(memberConcept)</text><polygon fill="#A80036" points="1285.5,162.9922,1295.5,166.9922,1285.5,170.9922,1289.5,166.9922" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="967.5" x2="1291.5" y1="166.9922" y2="166.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="974.5" y="161.9263">SendAsyncGetSync&lt;T&gt;(APIRequest apiRequest)</text><polygon fill="#A80036" points="1414.5,192.125,1424.5,196.125,1414.5,200.125,1418.5,196.125" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1307.5" x2="1420.5" y1="196.125" y2="196.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="73" x="1314.5" y="191.0591">ConceptAPI</text><polygon fill="#A80036" points="1318.5,221.2578,1308.5,225.2578,1318.5,229.2578,1314.5,225.2578" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1312.5" x2="1430.5" y1="225.2578" y2="225.2578"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="1324.5" y="220.1919">IConcept</text><polygon fill="#A80036" points="978.5,250.3906,968.5,254.3906,978.5,258.3906,974.5,254.3906" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="972.5" x2="1301.5" y1="254.3906" y2="254.3906"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="984.5" y="249.3247">IConcept</text><polygon fill="#A80036" points="266.5,279.5234,256.5,283.5234,266.5,287.5234,262.5,283.5234" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="260.5" x2="961.5" y1="283.5234" y2="283.5234"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="56" x="272.5" y="278.4575">IConcept</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="149" x2="1509" y1="292.5234" y2="292.5234"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="143" x="154" y="302.7339">[Set member Concept]</text><polygon fill="#A80036" points="945.5,323.4609,955.5,327.4609,945.5,331.4609,949.5,327.4609" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="255.5" x2="951.5" y1="327.4609" y2="327.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="669" x="262.5" y="322.395">SetConceptSync&lt;APIResponse&gt;(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)</text><polygon fill="#A80036" points="1285.5,352.5938,1295.5,356.5938,1285.5,360.5938,1289.5,356.5938" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="967.5" x2="1291.5" y1="356.5938" y2="356.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="974.5" y="351.5278">SendAsyncGetSync&lt;T&gt;(APIRequest apiRequest)</text><polygon fill="#A80036" points="1414.5,381.7266,1424.5,385.7266,1414.5,389.7266,1418.5,385.7266" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1307.5" x2="1420.5" y1="385.7266" y2="385.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="73" x="1314.5" y="380.6606">ConceptAPI</text><polygon fill="#A80036" points="1318.5,410.8594,1308.5,414.8594,1318.5,418.8594,1314.5,414.8594" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1312.5" x2="1430.5" y1="414.8594" y2="414.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="1324.5" y="409.7935">success/failure</text><polygon fill="#A80036" points="978.5,439.9922,968.5,443.9922,978.5,447.9922,974.5,443.9922" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="972.5" x2="1301.5" y1="443.9922" y2="443.9922"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="984.5" y="438.9263">success/failure</text><polygon fill="#A80036" points="266.5,469.125,256.5,473.125,266.5,477.125,262.5,473.125" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="260.5" x2="961.5" y1="473.125" y2="473.125"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="272.5" y="468.0591">success/failure</text><line style="stroke: #000000; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="149" x2="1509" y1="482.125" y2="482.125"/><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="158" x="154" y="492.3354">[Reset member Concept]</text><polygon fill="#A80036" points="945.5,513.0625,955.5,517.0625,945.5,521.0625,949.5,517.0625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="255.5" x2="951.5" y1="517.0625" y2="517.0625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="683" x="262.5" y="511.9966">ResetConceptSync&lt;APIResponse&gt;(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)</text><polygon fill="#A80036" points="1285.5,542.1953,1295.5,546.1953,1285.5,550.1953,1289.5,546.1953" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="967.5" x2="1291.5" y1="546.1953" y2="546.1953"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="311" x="974.5" y="541.1294">SendAsyncGetSync&lt;T&gt;(APIRequest apiRequest)</text><polygon fill="#A80036" points="1414.5,571.3281,1424.5,575.3281,1414.5,579.3281,1418.5,575.3281" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="1307.5" x2="1420.5" y1="575.3281" y2="575.3281"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="73" x="1314.5" y="570.2622">ConceptAPI</text><polygon fill="#A80036" points="1318.5,600.4609,1308.5,604.4609,1318.5,608.4609,1314.5,604.4609" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="1312.5" x2="1430.5" y1="604.4609" y2="604.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="1324.5" y="599.395">success/failure</text><polygon fill="#A80036" points="978.5,629.5938,968.5,633.5938,978.5,637.5938,974.5,633.5938" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="972.5" x2="1301.5" y1="633.5938" y2="633.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="984.5" y="628.5278">success/failure</text><polygon fill="#A80036" points="266.5,658.7266,256.5,662.7266,266.5,666.7266,262.5,662.7266" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="260.5" x2="961.5" y1="662.7266" y2="662.7266"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="94" x="272.5" y="657.6606">success/failure</text><polygon fill="#A80036" points="78.5,694.8594,68.5,698.8594,78.5,702.8594,74.5,698.8594" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 2.0,2.0;" x1="72.5" x2="249.5" y1="698.8594" y2="698.8594"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="154" x="84.5" y="693.7935">IConcept/success/failure</text><!--MD5=[b070f33b0598fd251deee6aca011669c]
+@startuml
+title "CCAlib - ConceptClientController - Time Sequence Diagram"
+
+
+CallingSolution -> ConceptClientController
+
+activate ConceptClientController
+
+alt Get member Concept
+
+    ConceptClientController -> ConceptService : GetConceptSync<APIResponse>(memberConcept)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI - -> BaseService : IConcept
+
+    deactivate ManagedCareAPI
+
+    BaseService - -> ConceptService : IConcept
+
+    deactivate BaseService
+
+    ConceptService - -> ConceptClientController : IConcept
+
+    deactivate ConceptService
+
+else Set member Concept
+
+    ConceptClientController -> ConceptService : SetConceptSync<APIResponse>(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI - -> BaseService : success/failure
+
+    deactivate ManagedCareAPI
+
+    BaseService - -> ConceptService : success/failure
+
+    deactivate BaseService
+
+    ConceptService - -> ConceptClientController : success/failure
+
+    deactivate ConceptService
+
+else Reset member Concept
+
+    ConceptClientController -> ConceptService : ResetConceptSync<APIResponse>(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI - -> BaseService : success/failure
+
+    deactivate ManagedCareAPI
+
+    BaseService - -> ConceptService : success/failure
+
+    deactivate BaseService
+
+    ConceptService - -> ConceptClientController : success/failure
+
+    deactivate ConceptService
+
+end
+
+ConceptClientController - -> CallingSolution : IConcept/success/failure
+
+deactivate ConceptClientController
+
+deactivate CallingSolution
+@enduml
+
+PlantUML version 1.2019.12(Sun Nov 03 05:24:54 EST 2019)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Java Version: 1.8.0_372-b07
+Operating System: Linux
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

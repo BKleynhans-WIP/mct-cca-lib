@@ -1,0 +1,39 @@
+@startuml
+title "CCAlib - EhttExtCommonProcessParamsClientController - Time Sequence Diagram"
+
+
+CallingSolution -> EhttExtCommonProcessParamsClientController
+
+activate EhttExtCommonProcessParamsClientController
+
+EhttExtCommonProcessParamsClientController -> EhttExtCommonProcessParamsService : GetCommonProcessParamsSync<APIResponse>(processName)
+
+activate EhttExtCommonProcessParamsService
+
+EhttExtCommonProcessParamsService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+activate BaseService
+
+BaseService -> ManagedCareAPI : EhttExtCommonProcessParamsAPI
+
+activate ManagedCareAPI
+
+ManagedCareAPI --> BaseService : List<commonProcessParams>
+
+deactivate ManagedCareAPI
+
+BaseService --> EhttExtCommonProcessParamsService : List<commonProcessParams>
+
+deactivate BaseService
+
+EhttExtCommonProcessParamsService --> EhttExtCommonProcessParamsClientController : List<commonProcessParams>
+
+deactivate EhttExtCommonProcessParamsService
+
+EhttExtCommonProcessParamsClientController --> CallingSolution : List<commonProcessParams>
+
+deactivate EhttExtCommonProcessParamsClientController
+
+deactivate CallingSolution
+
+@enduml

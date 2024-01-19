@@ -1,0 +1,108 @@
+@startuml
+skinparam classAttributeIconSize 0
+allowmixing
+
+package MCT-CCA-LIB <<Frame>>
+{
+    package MCT-CCA-LIB::Config as p1
+    {
+        class LibConfig {}
+    }
+
+    package MCT-CCA-LIB::Exceptions
+    {
+        class SQLInvalidParameterException {}
+    }
+
+    package MCT-CCA-LIB::Interfaces
+    {
+        interface IApiUtility {}
+        interface IBaseDatabaseUtility {}
+        interface IDatabaseConfig {}
+        interface IDatabaseManager {}
+        interface IEmail {}
+        interface ILogger {}
+        interface IMemberIdentifier {}
+        interface IOracleDatabaseUtility {}
+        interface ISqlDatabaseUtility {}
+    }
+
+    package MCT-CCA-LIB::Models
+    {
+        package MCT-CCA-LIB::Models::Config as p2
+        {
+            class AppConfig {}
+            class EmailConfig {}
+            class FileConfig {}
+            class OracleConfig {}
+            class RESTConfig {}
+            class SOAFConfig {}
+            class SQLConfig {}
+        }
+
+        package MCT-CCA-LIB::Models::FileTool as p3
+        {
+            class ExcelSpreadsheet {}
+        }
+
+        package MCT-CCA-LIB::Models::Logger
+        {
+            class MessageDefinition {}
+        }
+
+        package MCT-CCA-LIB::Models::SQL
+        {
+            class SQLParameter {}
+            class StoredProcedureDefinition {}
+            class StoredProcedureParameter {}
+        }
+
+        class DatabaseConfig {}
+        
+        class MemberIdentifier
+        {
+            +string ExternalSystemId()
+            +string ExternalMemberId()
+            +string ExternalSystemMemberId()
+            +string ToString()
+        }
+    }
+
+    package MCT-CCA-LIB::RESTClasses
+    {
+        class ApiResponse {}
+
+        class JwtToken {}
+
+        class RESTUtility {}        
+    }
+
+    package MCT-CCA-LIB::SQLClasses
+    {
+        class SQLUtilityBase {}
+
+        package MCT-CCA-LIB::SQLClasses::Oracle
+        {
+            class OracleUtility {}
+        }
+
+        package MCT-CCA-LIB::SQLClasses::SqlServer
+        {
+            class SQLManager {}
+
+            class SQLUtility {}
+        }
+    }
+
+    package MCT-CCA-LIB::Utilities
+    {
+        class DataFormatting {}
+        class Email {}
+        class ExcelParser {}
+        class FileTool {}
+        class Library {}
+        class Logger {}        
+    }
+}
+
+@enduml

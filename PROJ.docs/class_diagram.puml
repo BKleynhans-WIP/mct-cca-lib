@@ -1,0 +1,1586 @@
+@startuml "CCAlib Class Diagram"
+
+top to bottom direction
+skinparam classAttributeIconSize 0
+skinparam groupInheritance 3
+allowmixing
+!include https://raw.githubusercontent.com/ebbypeter/Archimate-PlantUML/master/Archimate.puml
+
+title "CCAlib Class Diagram"
+
+package MCT-UID1496-MANAGED-CARE-API <<Frame>>
+{
+  class ConceptAPI <<Resource>>
+  {
+    <<PUT>> Concept()
+    <<PUT>> ResetConcept()
+  }
+
+  class MemberAPI <<Resource>>
+  {
+    <<GET>> Member(internalMemberIdentifier : InternalMemberIdentifier)
+    <<GET>> Member(externalMemberIdentifier : ExternalMemberIdentifier)
+  }
+
+  class MemberCoverageAPI <<Resource>>
+  {
+    <<GET>> MemberCoverage(internalMemberIdentifier : InternalMemberIdentifier)
+    <<GET>> MemberCoverage(externalMemberIdentifier : ExternalMemberIdentifier)
+  }
+
+  class UMemberConceptValueAPI <<Resource>>
+  {
+    <<GET>> UMemberConceptValue(internalMemberIdentifier : InternalMemberIdentifier)
+    <<GET>> UMemberConceptValue(externalMemberIdentifier : ExternalMemberIdentifier)
+  }
+
+  class EhttExtCommonProcessParamsAPI <<Resource>>
+  {
+    <<GET>> CommonProcessParams(processName : string)
+  }
+
+  class GapsInCareAPI <<Resource>>
+  {
+    <<GET>> MembersWithGapsInCare()
+    <<GET>> GapsInCareForMember(internalMemberIdentifier : InternalMemberIdentifier)
+    <<GET>> GapsInCareForMember(externalMemberIdentifier : ExternalMemberIdentifier)
+  }
+}
+
+package AutoMapper <<Frame>>
+{
+  class Profile
+  interface IMapper
+}
+
+package Newtonsoft <<Frame>>
+{
+  package Newtonsoft.Json
+  {
+    package Json.Linq
+    {
+      class JToken
+    }
+
+    class JsonConvert
+  }
+}
+
+package OfficeOpenXml
+{
+  class ExcelPackage
+  class ExcelWorksheet
+  class ExcellCellAddress
+}
+
+package Swashbuckle <<Frame>>
+{
+  package Swashbuckle.AspNetCore
+  {
+    package AspNetCore.SwaggerGen
+    {
+      interface ISchemaFilter
+
+      class SchemaFilterContext
+    }
+  }
+}
+
+package System <<Frame>>
+{
+  package System.ComponentModel
+  {
+    package ComponentModel.DataAnnotations
+    {
+      class ValidationAttribute
+    }
+  }
+
+  package System.Data
+  {
+    class DataTable
+    class DataColumn
+  }
+
+  package System.Net
+  {
+    package Net.Http
+    {
+      interface IHttpClientFactory
+      class HttpStatusCode
+    }
+
+    package Net.Mail
+    {
+      class Attachment
+      class MailMessage
+      class MailAddress
+      class MailAddressCollection
+      class SmtpClient
+    }
+  }
+
+  package System.IO
+  {
+    class File
+    class Directory
+    class MemoryStream
+    class FileStream
+  }
+
+  package System.Reflection
+  {
+    class PropertyInfo
+  }
+
+  package System.Runtime
+  {
+    package Runtime.Serialization
+    {
+      class IgnoreDataMemberAttribute
+    }
+  }
+
+  package System.Text
+  {
+    package Text.RegularExpressions
+    {
+      class Regex
+    }
+
+    class StringBuilder
+  }
+
+  package System.Xml
+  {
+    package Xml.Linq
+    {
+      class XDocument
+    }
+  }
+
+  class Nullable
+  class Type
+}
+
+package Microsoft <<Frame>>
+{
+  package Microsoft.OpenApi
+  {
+    package OpenApi.Models
+    {
+      class OpenApiSchema
+    }
+  }
+
+  package Microsoft.AspNetCore
+  {
+    package AspNetCore.Mvc
+    {
+      class Controller
+    }
+  }
+
+  package Microsoft.Extensions
+  {
+    package Extensions.Configuration
+    {
+      interface IConfiguration
+    }
+
+    package Extensions.Logging
+    {
+      interface ILogger
+    }
+  }
+}
+
+package MCT.CCAlib <<Frame>>
+{
+  package CCAlib.ClientControllers
+  {
+    package ClientControllers.IClientControllers
+    {
+      interface IConceptClientController
+      {
+        GetMemberConcept(memberConcept : IMemberConcept) : IConcept
+        SetMemberConcept(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<APIResponse>
+        ResetMemberConcept(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<APIResponse>
+      }
+
+      interface IEhttExtCommonProcessParamsClientController
+      {
+        GetCommonProcessParams(processName : string) : List<EhttExtCommonProcessParamDTO>
+      }
+
+      interface IGapsInCareClientController
+      {
+        GetCidOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<string>
+        GetExternalMemberIdOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<ExternalMemberIdentifier>
+        GetSubscriberIdOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<SubscriberIdentifier>
+        GetGapsInCareByCid(cid : string, validGapsInCare : List<string>) : MemberConcept
+      }
+
+      interface IMemberClientController
+      {
+        GetMember(externalMemberIdentifier : ExternalMemberIdentifier) : Member
+      }
+
+      interface IMemberCoverageClientController
+      {
+        GetMemberCoverage(subscriberIdentifier : ISubscriberIdentifier) : MemberCoverage
+      }
+
+      interface IUMemberConceptValueClientController
+      {
+        GetUMemberConceptValue(cid : int, conceptId : int) : UMemberConceptValue
+      }
+    }
+
+    class ClientControllerBase<T,U>
+    {
+      - _logger : ILogger<T> <<protected>> <<readonly>>
+      - _service : U <<protected>> <<readonly>>
+      - _mapper : IMapper <<protected>> <<readonly>>
+
+      <<create>> ClientControllerBase(logger : ILogger<T>, service : U, mapper : IMapper)
+    }
+
+    class "ConceptClientController<ConceptClientController, IConceptService>" as ConceptClientController
+    {
+      <<create>> ConceptClientController(logger : ILogger<ConceptClientController>, service : IConceptService, mapper : IMapper)
+
+      +GetMemberConcept(memberConcept : IMemberConcept) : IConcept
+      -GetMemberConcept(memberConcept : IMemberConcept) : APIResponse
+      +SetMemberConcept(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<APIResponse>
+      +ResetMemberConcept(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<APIResponse>
+    }
+
+    class "ClientControllerBase<EhttExtCommonProcessParamsClientController, IEhttExtCommonProcessParamsService>" as EhttExtCommonProcessParamsClientController
+    {
+      <<create>> EhttExtCommonProcessParamsClientController(logger : ILogger<EhttExtCommonProcessParamsClientController>, service : IEhttExtCommonProcessParamsService, mapper : IMapper)
+
+      +GetCommonProcessParams(processName : string) : List<EhttExtCommonProcessParamDTO>
+      -GetCommonProcessParamsPrivate(processName : string) : Task<APIResponse>
+    }
+
+    class "ClientControllerBase<GapsInCareClientController, IGapsInCareService>" as GapsInCareClientController
+    {
+      <<create>> GapsInCareClientController(logger : ILogger<GapsInCareClientController>, service : IGapsInCareService, mapper : IMapper)
+
+      +GetCidOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<string>
+      -GetCidOfMembersWithGapsInCarePrivate(validGapsInCare : List<string>) : APIResponse
+      +GetExternalMemberIdOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<ExternalMemberIdentifier>
+      -GetExternalMemberIdOfMembersWithGapsInCarePrivate(validGapsInCare : List<string>) : APIResponse
+      +GetSubscriberIdOfMembersWithGapsInCare(validGapsInCare : List<string>) : List<SubscriberIdentifier>
+      -GetSubscriberIdOfMembersWithGapsInCarePrivate(validGapsInCare : List<string>) : APIResponse
+      +GetGapsInCareByCid(cid : string, validGapsInCare : List<string>) : MemberConcept
+      -GetGapsInCareByCidPrivate(cid : string, validGapsInCare : List<string>) : APIResponse
+    }
+
+    class "ClientControllerBase<MemberClientController, IMemberService>" as MemberClientController
+    {
+      <<create>> MemberController(logger : ILogger<MemberController>, service : IMemberService, mapper : IMapper)
+
+      +GetMember(externalMemberIdentifier : ExternalMemberIdentifier) : Member
+      -GetMemberPrivate(externalMemberIdentifier : ExternalMemberIdentifier) : APIResponse
+    }
+
+    class "ClientControllerBase<MemberCoverageClientController, IMemberCoverageService>" as MemberCoverageClientController
+    {
+      <<create>> MemberCoverageController(logger : ILogger<MemberCoverageController>, service : IMemberCoverageService, mapper : IMapper)
+
+      +GetMemberCoverage(subscriberIdentifier : ISubscriberIdentifier) : MemberCoverage
+      -GetMemberCoveragePrivate(subscriberIdentifier : ISubscriberIdentifier) : APIResponse
+    }
+
+    class "ClientControllerBase<UMemberConceptValueClientController, IUMemberConceptValueService>" as UMemberConceptValueClientController
+    {
+      <<create>> UMemberConceptValueController(service : IUMemberConceptValueService, mapper : IMapper)
+
+      +GetUMemberConceptValue(cid : int, conceptId : int) : UMemberConceptValue
+      -GetUMemberConceptValuePrivate(cid : int, conceptId : int) : Task<APIResponse>
+    }
+  }
+
+  package CCAlib.Interfaces
+  {
+    package Interfaces.ckoltp
+    {
+      interface IConcept
+      {
+        Audit : int
+        CatalogSearch : bool?
+        ConceptGroupId : int?
+        ConceptTypeId : short
+        DbRowVersion : byte[]
+        Disable : bool
+        ExpireDays : short?
+        FolderId : int
+        Guid : Guid
+        Id : int
+        ListId : int?
+        MgId : short?
+        Name : string
+        NumberOfField : int?
+        NumericMax : double?
+        NumericMin : double?
+        Options : string
+        PermissionMask : int
+        Propagate : short?
+        Protected : bool
+        ShowMeasurementDate : bool
+        Trend : bool?
+        UnitTypeId : short?
+        Version : short
+        XmlInfo : string
+
+        UMemberConceptValues : ICollection<UMemberConceptValue>
+      }
+
+      interface IMember
+      {
+        ActiveInd : short
+        AlertDate : DateTime?
+        Alias : string
+        AllowManaged : short
+        AllowQa : bool?
+        AutoFocusSetting : string
+        CampaignExcluded : bool
+        CarekeyExpirationDate : DateTime?
+        ChangePasswordRequired : bool?
+        Cid : int
+        CmIdentifiedDate : DateTime?
+        DateOfBirth : DateTime
+        DbRowVersion : byte[]
+        DbVersion : short?
+        Email : string
+        Employer : int?
+        ExternalUniqueId : string
+        FailedTime : short
+        FirstName : string
+        Gender : char?
+        HasHipaaPrivacy : bool
+        HealthcareId : string
+        LastAccessTime : DateTime
+        LastFailedPeriodStart : DateTime?
+        LastLoginTime : DateTime?
+        LastName : string
+        LicenseId : int?
+        MedicaidNo : string
+        MedicareNo : string
+        MemberCustomization : string
+        MemberGroupId : short
+        MergeDate : DateTime?
+        MergeStatus : bool
+        MergeUser : int?
+        MetadataGuid : Guid?
+        MiddleInitial : string
+        OpenDate : DateTime?
+        OptOutTime : DateTime?
+        PhoneActiveInd : bool?
+        PrivateMember : short
+        RestrictionGroupId : int?
+        Sms : string
+        SsisExternalId : string
+        SsisExternalSystemId : int?
+        SsisInsert : bool?
+        SsisUpdate : bool?
+        Ssn : string
+        SubscriberId : string
+        TempCidLink : int?
+        TempStatus : short?
+        Title : string
+        VF01 : string
+        VF02 : string
+        VF03 : string
+        VF04 : string
+        VF05 : string
+        VF06 : string
+        VF07 : string
+        VF08 : string
+        VF09 : string
+        VF10 : string
+        WizardState : string
+        XmlFilterSort : string
+
+        MemberCoverage : MemberCoverage
+      }
+
+      interface IMemberCoverage
+      {
+        Cid : int
+        DbRowVersion : byte[]
+        EffectiveDate : DateTime
+        GroupCk : string
+        GroupId : string
+        GroupName : string
+        Id : int
+        IsEligible : bool
+        IsPrimary : bool
+        MetadataGuid : Guid?
+        OrigEffectiveDate : DateTime?
+        Relationship : int?
+        SourceDate : DateTime?
+        SourceDetail : string
+        SourceId : string
+        SsisInsert : bool?
+        SsisRecalculateDates : bool?
+        SsisUpdate : bool?
+        SubscriberId : string
+        SubscriberSuffix : int?
+        TermDate : DateTime?
+        VF01 : string
+        VF02 : string
+        VF03 : string
+        VF04 : string
+        VF05 : string
+        VF06 : string
+        VF07 : string
+        VF08 : string
+        VF09 : string
+        VF10 : string
+
+        Member : Member
+      }
+
+      interface IUMemberConceptValue
+      {
+        Cid : int
+        ConceptId : int
+        StringValue : string
+        UnitId : int?
+        UpdateTime : DateTime
+        ObxId : int?
+        NumValue : double?
+        DateValue : DateTime?
+        ConceptTypeId : int?
+        Trend : double?
+        SysDate : DateTime?
+        Username : string?
+        SourceGuid : Guid?
+        DbRowVersion : byte[]
+
+        Concept : Concept
+      }
+    }
+
+    package Interfaces.config
+    {
+      interface IEmailConfig
+      {
+        Bcc : List<string>
+        Body : string
+        Cc : List<string>
+        From : string
+        SmtpServer : string
+        Subject : string
+        To : List<string>
+      }
+    }
+
+    package Interfaces.customdb
+    {
+      interface IEhttExtCommonProcessParam
+      {
+        Id : int
+        ProcessName : string
+        ParameterName : string
+        ParameterValue : string
+        CreateDate : DateTime?
+        LastUpdatedDate : DateTime?
+      }
+
+      interface IT1468AssessmentManagerAnswer
+      {
+        Id : int
+        Answer : string
+        SourceIdentifier : string
+        CreateDate : DateTime
+      }
+
+      interface IT1468AssessmentManagerAssessment
+      {
+        Id : int
+        IncomingSource : string
+        Name : string
+        HraId : int?
+        CreateAssessmentTask : bool
+        Active : bool
+        CreateDate : DateTime
+        DisabledDate : DateTime?
+
+        QuestionAnswerLinks : ICollection<T1468AssessmentManagerQuestionAnswerLink>
+      }
+
+      interface IT1468AssessmentManagerQuestion
+      {
+        Id : int
+        Question : string
+        SourceIdentifier : string
+        QuestionExtension : string?
+        AlternateQuestion : string
+        CreateDate : DateTime
+        ParentIdentifier : string?
+
+        QuestionAnswerLinks : ICollection<I1468AssessmentManagerQuestionAnswerLink>
+      }
+
+      interface IT1468AssessmentManagerQuestionAnswerLink
+      {
+        Id : int
+        AssessmentId : int
+        QuestionId : int
+        AnswerId : int?
+        Active : bool
+        CreateDate : DateTime
+        DisabledDate : DateTime?
+
+        T1468AssessmentManagerAssessment : T1468AssessmentManagerAssessment
+        T1468AssessmentManagerQuestion : T1468AssessmentManagerQuestion
+      }
+    }
+
+    package Interfaces.customModels
+    {
+      interface IActiveGapsInCareConcepts
+      {
+        Cid : int?
+        SubscriberId : string?
+        SubscriberSuffix : int?
+        ConceptId : int?
+      }
+
+      interface IConceptObject
+      {
+        ConceptId : int?
+        Value : string?
+        UnitName : string?
+        MeasurementDate : DateTime?
+        ToString() : string
+      }
+
+      interface IDateOfBirth
+      {
+        Day : short
+        Month : short
+        Year : short
+        DateOfBirthString : string
+      }
+
+      interface IExternalMemberIdentifier
+      {
+        ExternalSystemId : string?
+        ExternalMemberId : string?
+        ExternalSystemMemberId : string?
+        ToString() : string
+      }
+
+      interface IMemberConcept
+      {
+        Cid : int
+        ExternalMemberIdentifier : ExternalMemberIdentifier
+        SubscriberIdentifier : SubscriberIdentifier
+        Concepts : List<Concept>
+        ToString() : string
+      }
+
+      interface ISubscriberIdentifier
+      {
+        SubscriberId : string?
+        DependentNumber : string?
+        SubscriberDependentId : string?
+        ToString() : string
+      }
+    }
+
+    interface IAPIRequest
+    {
+      ApiType : StaticDetails.ApiType
+      Data : object
+      Url : string
+    }
+
+    interface IAPIResponse
+    {
+      ErrorMessages : List<string>
+      IsSuccess : bool
+      Result : object
+      StatusCode : HttpStatusCode
+    }
+
+    interface IEmail
+    {
+      DefaultEmailConfig : IEmailConfig
+      VendorSpecificEmailConfig : IEmailConfig
+      SendEmail(recipients : List<string>, ccRecipients : List<string>, bccRecipients : List<string>, subject : string, body : string) : bool
+      SendEmail(recipients : List<string>, ccRecipients : List<string>, bccRecipients : List<string>, subject : string, body : string, attachmentBytes : byte[], attachmentName : string) : bool
+      SendEmail(recipients : List<string>, subject : string, body : string)
+    }
+
+    interface IFileTool
+    {
+      CreateExcelFile(excelSpreadsheet : ExcelSpreadsheet) : ExcelPackage
+      GetFilenameWithExtension(file : string) : string
+      GetFilenameWithoutExtension(file : string) : string
+      GetFilesInDirectory(fullyQualifiedPath : string) : List<string>
+      GetFirstStringElementFromFilename(file : string, splitOnChar : char) : string
+      ReadExcelFile(filePath : string) : ExcelSpreadsheet
+      ReadJsonFile(filePath : string) : JToken
+      ReadXmlFile(filePath : string) : XDocument
+      SendExcelFileInEmail(emailConfig : EmailConfig, excelPackage : ExcelPackage) : bool
+    }
+
+    interface ITools
+    {
+      ListIsNullOrEmpty<T>(collection : List<T>) : bool
+      IntTryParseWithException(variableName : string, value : string) : int
+    }
+  }
+
+  package CCAlib.Models
+  {
+    package Models.ckoltp
+    {
+      class Concept
+      {
+        +Audit : int
+        +CatalogSearch : bool?
+        +ConceptGroupId : int?
+        +ConceptTypeId : short
+        +DbRowVersion : byte[]
+        +Disable : bool
+        +ExpireDays : short?
+        +FolderId : int
+        +Guid : Guid
+        +Id : int
+        +ListId : int?
+        +MgId : short?
+        +Name : string
+        +NumberOfField : int?
+        +NumericMax : double?
+        +NumericMin : double?
+        +Options : string
+        +PermissionMask : int
+        +Propagate : short?
+        +Protected : bool
+        +ShowMeasurementDate : bool
+        +Trend : bool?
+        +UnitTypeId : short?
+        +Version : short
+        +XmlInfo : string
+        +UMemberConceptValues : ICollection<UMemberConceptValue> <<virtual>>
+      }
+
+      class Member
+      {
+        +ActiveInd : short
+        +AlertDate : DateTime?
+        +Alias : string
+        +AllowManaged : short
+        +AllowQa : bool?
+        +AutoFocusSetting : string
+        +CampaignExcluded : bool
+        +CarekeyExpirationDate : DateTime?
+        +ChangePasswordRequired : bool?
+        +Cid : int
+        +CmIdentifiedDate : DateTime?
+        +DateOfBirth : DateTime
+        +DbRowVersion : byte[]
+        +DbVersion : short?
+        +Email : string
+        +Employer : int?
+        +ExternalUniqueId : string
+        +FailedTime : short
+        +FirstName : string
+        +Gender : char?
+        +HasHipaaPrivacy : bool
+        +HealthcareId : string
+        +LastAccessTime : DateTime
+        +LastFailedPeriodStart : DateTime?
+        +LastLoginTime : DateTime?
+        +LastName : string
+        +LicenseId : int?
+        +MedicaidNo : string
+        +MedicareNo : string
+        +MemberCustomization : string
+        +MemberGroupId : short
+        +MergeDate : DateTime?
+        +MergeStatus : bool
+        +MergeUser : int?
+        +MetadataGuid : Guid?
+        +MiddleInitial : string
+        +OpenDate : DateTime?
+        +OptOutTime : DateTime?
+        +PhoneActiveInd : bool?
+        +PrivateMember : short
+        +RestrictionGroupId : int?
+        +Sms : string
+        +SsisExternalId : string
+        +SsisExternalSystemId : int?
+        +SsisInsert : bool?
+        +SsisUpdate : bool?
+        +Ssn : string
+        +SubscriberId : string
+        +TempCidLink : int?
+        +TempStatus : short?
+        +Title : string
+        +VF01 : string
+        +VF02 : string
+        +VF03 : string
+        +VF04 : string
+        +VF05 : string
+        +VF06 : string
+        +VF07 : string
+        +VF08 : string
+        +VF09 : string
+        +VF10 : string
+        +WizardState : string
+        +XmlFilterSort : string
+        +MemberCoverage : MemberCoverage <<virtual>>
+      }
+
+      class MemberCoverage
+      {
+        +Cid : int
+        +DbRowVersion : byte[]
+        +EffectiveDate : DateTime
+        +GroupCk : string
+        +GroupId : string
+        +GroupName : string
+        +Id : int
+        +IsEligible : bool
+        +IsPrimary : bool
+        +MetadataGuid : Guid?
+        +OrigEffectiveDate : DateTime?
+        +Relationship : int?
+        +SourceDate : DateTime?
+        +SourceDetail : string
+        +SourceId : string
+        +SsisInsert : bool?
+        +SsisRecalculateDates : bool?
+        +SsisUpdate : bool?
+        +SubscriberId : string
+        +SubscriberSuffix : int?
+        +TermDate : DateTime?
+        +VF01 : string
+        +VF02 : string
+        +VF03 : string
+        +VF04 : string
+        +VF05 : string
+        +VF06 : string
+        +VF07 : string
+        +VF08 : string
+        +VF09 : string
+        +VF10 : string
+        +Member : Member <<virtual>>
+      }
+
+      class UMemberConceptValue
+      {
+        +Cid : int
+        +ConceptId : int
+        +StringValue : string
+        +UnitId : int?
+        +UpdateTime : DateTime
+        +ObxId : int?
+        +NumValue : double?
+        +DateValue : DateTime?
+        +ConceptTypeId : int?
+        +Trend : double?
+        +SysDate : DateTime?
+        +Username : string?
+        +SourceGuid : Guid?
+        +DbRowVersion : byte[]
+        +Concept : Concept <<virtual>>
+      }
+    }
+
+    package Models.config
+    {
+      class EmailConfig
+      {
+        +SmtpServer : string
+        +From : string
+        +To : List<string>
+        +CC : List<string>
+        +Bcc : List<string>
+        +Subject : string
+        +Body : string
+      }
+    }
+
+    package Models.customdb
+    {
+      package customdb.dto
+      {
+        class EhttExtCommonProcessParamCreateDTO
+        {
+          +Id : int
+          +ProcessName : string
+          +ParameterName : string
+          +ParameterValue : string
+          +CreateDate : DateTime?
+          +LastUpdatedDate : DateTime?
+        }
+
+        class EhttExtCommonProcessParamDTO
+        {
+          +Id : int
+          +ProcessName : string
+          +ParameterName : string
+          +ParameterValue : string
+          +CreateDate : DateTime?
+          +LastUpdatedDate : DateTime?
+        }
+
+        class EhttExtCommonProcessParamUpdateDTO
+        {
+          +Id : int
+          +ProcessName : string
+          +ParameterName : string
+          +ParameterValue : string
+          +CreateDate : DateTime?
+          +LastUpdatedDate : DateTime?
+        }
+
+        class T1468AssessmentManagerAnswerCreateDTO
+        {
+          +Id : int
+          +Answer : string
+          +SourceIdentifier : string
+          +CreateDate : DateTime
+        }
+
+        class T1468AssessmentManagerAnswerDTO
+        {
+          +Id : int
+          +Answer : string
+          +SourceIdentifier : string
+          +CreateDate : DateTime
+        }
+
+        class T1468AssessmentManagerAnswerUpdateDTO
+        {
+          +Id : int
+          +Answer : string
+          +SourceIdentifier : string
+          +CreateDate : DateTime
+        }
+
+        class T1468AssessmentManagerAssessmentCreateDTO
+        {
+          +Id : int
+          +IncomingSource : string
+          +Name : string
+          +HraId : int?
+          +CreateAssessmentTask : bool
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerAssessmentDTO
+        {
+          +Id : int
+          +IncomingSource : string
+          +Name : string
+          +HraId : int?
+          +CreateAssessmentTask : bool
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerAssessmentUpdateDTO
+        {
+          +Id : int
+          +IncomingSource : string
+          +Name : string
+          +HraId : int?
+          +CreateAssessmentTask : bool
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerQuestionAnswerLinkCreateDTO
+        {
+          +Id : int
+          +AssessmentId : int
+          +QuestionId : int
+          +AnswerId : int?
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerQuestionAnswerLinkDTO
+        {
+          +Id : int
+          +AssessmentId : int
+          +QuestionId : int
+          +AnswerId : int?
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerQuestionAnswerLinkUpdateDTO
+        {
+          +Id : int
+          +AssessmentId : int
+          +QuestionId : int
+          +AnswerId : int?
+          +Active : bool
+          +CreateDate : DateTime
+          +DisabledDate : DateTime?
+        }
+
+        class T1468AssessmentManagerQuestionCreateDTO
+        {
+          +Id : int <<IgnoreDataMember>>
+          +Question : string
+          +SourceIdentifier : string
+          +QuestionExtension : string?
+          +AlternateQuestion : string
+          +CreateDate : DateTime <<IgnoreDataMember>>
+          +ParentIdentifier : string?
+        }
+
+        class T1468AssessmentManagerQuestionDTO
+        {
+          +Id : int
+          +Question : string
+          +SourceIdentifier : string
+          +QuestionExtension : string?
+          +AlternateQuestion : string
+          +CreateDate : DateTime
+          +ParentIdentifier : string?
+        }
+
+        class T1468AssessmentManagerQuestionUpdateDTO
+        {
+          +Id : int
+          +Question : string
+          +SourceIdentifier : string
+          +QuestionExtension : string?
+          +AlternateQuestion : string
+          +CreateDate : DateTime <<IgnoreDataMember>>
+          +ParentIdentifier : string?
+        }
+      }
+
+      class EhttExtCommonProcessParam
+      {
+        +Id : int
+        +ProcessName : string
+        +ParameterName : string
+        +ParameterValue : string
+        +CreateDate : DateTime?
+        +LastUpdatedDate : DateTime?
+      }
+
+      class T1443TaskCreationSettings
+      {
+        +Id : int
+        +IncomingSource : string
+        +TaskType : string
+        +ExternalUserId : string?
+        +UserSystemId : int?
+        +ExternalQueueId : string?
+        +Priority : string
+        +DaysBeforeDue : int?
+        +Subject : string?
+        +Body : string?
+      }
+
+      class T1464AssessmentImporterData
+      {
+        +Id : int
+        +MemberLogId : int
+        +QuestionId : int
+        +AnswerValue : string?
+        +CreateDate : DateTime
+      }
+
+      class T1468AssessmentManagerAnswer
+      {
+        +Id : int
+        +Answer : string
+        +SourceIdentifier : string
+        +CreateDate : DateTime
+      }
+
+      class T1468AssessmentManagerAssessment
+      {
+        +Id : int
+        +IncomingSource : string
+        +Name : string
+        +HraId : int?
+        +CreateAssessmentTaks : bool
+        +Active : bool
+        +CreateDate : DateTime
+        +DisabledDate : DateTime?
+        +QuestionAnswerLinks : ICollection<T1468AssessmentManagerQuestionAnswerLink> <<virtual>>
+      }
+
+      class T1468AssessmentManagerQuestion
+      {
+        +Id : int
+        +Question : string
+        +SourceIdentifier : string
+        +QuestionExtension : string?
+        +AlternateQuestion : string
+        +CreateDate : DateTime
+        +ParentIdentifier : string?
+        +QuestionAnswerLinks : ICollection<I1468AssessmentManagerQuestionAnswerLink> <<virtual>>
+      }
+
+      class T1468AssessmentManagerQuestionAnswerLink
+      {
+        +Id : int
+        +AssessmentId : int
+        +QuestionId : int
+        +AnswerId : int?
+        +Active : bool
+        +CreateDate : DateTime
+        +DisabledDate : DateTime?
+        +T1468AssessmentManagerAssessment : T1468AssessmentManagerAssessment <<virtual>>
+        +T1468AssessmentManagerQuestion : T1468AssessmentManagerQuestion <<virtual>>
+      }
+    }
+
+    package Models.customModels
+    {
+      class ActiveGapsInCareConcepts
+      {
+        +Cid : int?
+        +SubscriberId : string?
+        +SubscriberSuffix : int?
+        +ConceptId : int?
+      }
+
+      class ConceptObject
+      {
+        +ConceptId : int?
+        +Value : string?
+        +UnitName : string?
+        +MeasurementDate : DateTime?
+        +ToString() : string <<override>>
+      }
+
+      class DateOfBirth
+      {
+        -day : short
+        -month : short
+        -year : short
+        -dateOfBirth : string
+        +Day : short
+        +Month : short
+        +Year : short
+        +DateOfBirthString : string
+        -SetDateOfBirth()
+      }
+
+      class ExternalMemberIdentifier
+      {
+        ExternalSystemId : string?
+        ExternalMemberId : string?
+        ExternalSystemMemberId : string?
+        ToString() : string <<override>>
+      }
+
+      class MemberConcept
+      {
+        Cid : int
+        ExternalMemberIdentifier : ExternalMemberIdentifier
+        SubscriberIdentifier : SubscriberIdentifier
+        Concepts : List<ConceptObject>
+        ToString() : string <<override>>
+      }
+
+      class SubscriberIdentifier
+      {
+        SubscriberId : string?
+        DependentNumber : string?
+        SubscriberDependentId : string?
+        ToString() : string <<override>>
+      }
+    }
+
+    package Models.FileTool
+    {
+      class ExcelSpreadsheet
+      {
+        WorkbookName : string
+        Worksheets : List<DataTable>
+      }
+    }
+
+    class APIRequest
+    {
+      ApiType : ApiType = ApiType.GET
+      Url : string
+      Data : object
+    }
+
+    class APIResponse
+    {
+      StatusCode : HttpStatusCode
+      IsSuccess : bool = true
+      ErrorMessages : List<string>
+      Result : object
+    }
+  }
+
+  package CCAlib.Services
+  {
+    package Services.IServices
+    {
+      interface IBaseService
+      {
+        ResponseModel : APIResponse
+        HttpClient : IHttpClientFactory
+        SendAsyncGetSync<T>(api : API, apiRequest : APIRequest) : Task<T>
+      }
+
+      interface IConceptService
+      {
+        GetConceptSync<T>(memberConcept : IMemberConcept) : Task<T>
+        SetMemberConceptAsync<T>(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject)
+        ResetMemberConcept<T>(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject)
+      }
+
+      interface IEhttExtCommonProcessParamsService
+      {
+        GetCommonProcessParamsSync<T>() : Task<T>
+        GetCommonProcessParamsSync<T>(processName : string) : Task<T>
+      }
+
+      interface IGapsInCareService
+      {
+        GetCidOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+        GetExternalMemberIdOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+        GetSubscriberIdOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+        GetGapsInCareByCidSync<T>(validGapsInCare : List<string>, cid : string) : Task<T>
+      }
+
+      interface IMemberCoverageService
+      {
+        GetMemberCoverageSync<T>(subscriberIdentifier : ISubscriberIdentifier) : Task<T>
+      }
+
+      interface IMemberService
+      {
+        GetMemberExternalSync<T>(externalMemberIdentifier : ExternalMemberIdentifier) : Task <T>
+        GetMemberInternalSync<T>(subscriber : SubscriberIdentifier) : Task<T>
+      }
+
+      interface IUMemberConceptValueService
+      {
+        GetUMemberConceptValueSync<T>(cid : int, conceptId : int) : Task<T>
+      }
+    }
+
+    class BaseService<T>
+    {
+      -_httpClientTimeout : int <<readonly>>
+      -_apiThreadCount : int <<readonly>>
+      -_semaphoreSlim : SemaphoreSlim <<static>>
+      -_config : IConfiguration <<readonly>
+      #_logger : ILogger<T> <<readonly>>
+      #_managedCareApiUrl : string
+      #_managedCareAcceptHeader : string
+      #_ampiApiUrl : string
+      #_ampiAcceptHeader : string
+      #_ampiClientId : string
+      #_ampiClientSecret : string
+      #_sourceUid : string
+      +ResponseModel : APIResponse
+      +HttpClient : IHttpClientFactory
+
+      <<create>>BaseService(logger : ILogger<T>, httpClient : IHttpClientFactory, config : IConfiguration)
+      -Initialize()
+      +SendAsyncGetSync<T>(api : StaticDetails.API, apiRequest : APIRequest) : Task<T> <<async>>
+      +SendAsyncGetAsync<T>(api : StaticDetails.API, apiRequest : APIRequest) : Task<T> <<async>>
+      -SetMessageHeaders(message : HttpRequestMessage , api : StaticDetails.API) : HttpRequestMessage
+      -SetJsonConvertDefaultSettings()
+      -GetMessageContent(apiRequest : APIRequest) : HttpConcent?
+      -GetHttpMethod(apiRequest : APIRequest) : HttpMethod
+      -IsTimeout(statusCode : HttpStatusCode) : bool
+    }
+
+    class "BaseService<ConceptService>" as ConceptService
+    {
+      <<create>>ConceptService(logger : ILogger<ConceptService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetConceptSync<T>(memberConcept : IMemberConcept) : Task<T>
+      +SetMemberConceptAsync<T>(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<T>
+      +ResetMemberConceptAsync<T>(memberIdentifier : ISubscriberIdentifier, concept : IConceptObject) : Task<T>
+    }
+
+    class ResetConcept
+    {
+      +Reset : bool = true
+    }
+
+    class "BaseService<EhttExtCommonProcessParamsService" as EhttExtCommonProcessParamsService
+    {
+      <<create>>EhttExtCommonProcessParamsService(logger : ILogger<EhttExtCommonProcessPAramsService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetCommonProcessParamsSync<T>() : Task<T>
+      +GetCommonProcessParamsSync<T>(processName : string) : Task<T>
+    }
+
+    class "BaseService<GapsInCareService>" as GapsInCareService
+    {
+      <<create>>GapsInCareService(logger : ILogger<GapsInCareService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetCidOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+      +GetExternalMemberIdOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+      +GetSubscriberIdOfMembersWithGapsInCareSync<T>(validGapsInCare : List<string>) : Task<T>
+      +GetGapsInCareByCidSync<T>(cid : string, validGapsInCare : List<string>) : Task<T>
+    }
+
+    class "BaseService<MemberCoverageService>" as MemberCoverageService
+    {
+      <<create>>MemberCoverageService(logger : ILogger<MemberCoverageService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetMEmberCoverageSync<T>(subscriberIdentifier : ISubscriberIdentifier) : Task<T>
+    }
+
+    class "BaseService<MemberService>" as MemberService
+    {
+      <<create>>MemberService(logger : ILogger<MemberService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetMemberExternalSync<T>(externalMemberIdentifier : ExternalMemberIdentifier) : Task<T>
+      +GetMemberInternalSync<T>(subscriber : SubscriberIdentifier) : Task<T>
+    }
+
+    class "BaseService<UMemberConceptValueService>" as UMemberConceptValueService
+    {
+      <<create>>UMemberConceptValueService(logger : ILogger<UMemberConceptValueService>, clientFactory : IHttpClientFactory, config : IConfiguration)
+      +GetUMemberConceptValueSync<T>(cid : int, conceptId : int) : Task<T>
+    }
+  }
+
+  package CCAlib.Utilities
+  {
+    package Utilities.CustomAttributes
+    {
+      class AllowNullDisallowStringWordAttribute
+      {
+        +IsValid(value : object) : bool <<override>>
+      }
+
+      class NotZeroAttribute
+      {
+        +IsValid(value : object) : bool <<override>>
+      }
+    }
+
+    package Utilities.SwaggerFilters
+    {
+      class IgnoreDataMemberSwaggerFilter
+      {
+        +Apply(OpenApiSchema : schema, SchemaFilterContext : context)
+      }
+    }
+
+    class DataFormatting
+    {
+      +RemoveUnicide(valueToClean : string) : string <<static>>
+      +ToDataTable<T>(desiredTableName : string, items : IEnumerable<T>) : DataTable <<static>>
+      +BaseType(type : Type) : Type <<static>>
+    }
+
+    class Email
+    {
+      -_logger : ILogger<EMail> <<readonly>>
+      -_config : IConfiguration <<readonly>>
+      -_tools : ITools <<readonly>>
+      +DefaultEmailConfig : IMailConfig
+      +VendorSpecificEmailConfig : IEmailConfig
+      <<create>>Email(logger : ILogger<Email>, config : IConfiguration, tools : ITools)
+      +SendEmail(recipients : List<string>, subject : string, body : string) : bool
+      +SendEmail(recipients : List<string>, ccRecipients : List<string>, bccRecipients : List<string>, subject : string, body : string) : bool
+      +SendEmail(recipients : List<string>, ccRecipients : List<string>, bccRecipients : List<string>, subject : string, body : string, attachmentBytes : byte[], attachmentName : string) : bool
+      -AddRecipientsToMailMessage(recipients : List<string>, ccRecipients : List<string>, bccRecipients : List<string>, mailMessage : MailMessage)
+      -AddRecipientsToAddressCollectionItem(recipients : List<string>, mailAddressesCollection : MailAddressCollection)
+      -AddAttachmentToMailMessage(attachmnetBytes : byte[], attachmentName : string, mailMessage : MailMessage)
+      -SendMailMessage(mailMessage : MailMessage) : bool
+    }
+
+    class ExcelParser
+    {
+      +FormatWorksheet(worksheet : ExcelWorksheet) : ExcelWorksheet <<static>>
+      +AddWorksheetHeaders(worksheet : ExcelWorksheet, dataTable : DataTable) : ExcelWorksheet <<static>>
+      +AddWorksheetRows(worksheet : ExcelWorksheet, dataTable : DataTable) : ExcelWorksheet <<static>>
+      +AutoFitColumns(worksheet : ExcelWorksheet) : ExcelWorksheet <<static>>
+    }
+
+    class FileTool
+    {
+      -_logger : ILogger<FileTool> <<readonly>>
+      -_email : IEmail <<readonly>>
+      <<create>>FileTool(logger : ILogger<FileTool>, email : IEmail)
+      +ReadJsonFile(filePath : string) : JToken
+      +ReadExcelFile(filePath : string) : ExcelSpreadsheet
+      +CreateExcelFile(excelSpreadsheet : ExcelSpreadsheet) : ExcelPackage
+      +SendExcelFileInEmail(emailConfig : EmailConfig, excelPackage : ExcelPackage) : bool
+      +SaveFile(fileNameAndPath : string, excelPackage : ExcelPackage)
+      +ReadXmlFile(filePath : string) : XDocument
+      +GetFilesInDirectory(fullyQualifiedPath : string) : List<string>
+      +GetFilenameWithExtension(file : string) : string
+      +GetFilenameWithoutExtension(file : string) : string
+      +GetFirstStringElementFromFilename(file : string, splitOnChar : char)
+    }
+
+    class Tools
+    {
+      _logger : ILogger<Tools> <<readonly>>
+      <<create>>Tools(logger : ILogger<Tools>)
+      +ListIsNullOrEmpty(collection : List<T>) : bool
+      +IntTryParseWithException(variableName : string, value : string) : int
+    }
+  }
+
+  class StaticDetails <<static>>
+  {
+    +ApiType <<enum>>
+    +API <<enum>>
+  }
+
+  class CCALibMappingConfig
+  {
+    <<create>>CCALibMappingConfig()
+  }
+}
+
+' START - Controller Relationships '
+ClientControllerBase --|> Controller
+ClientControllerBase --* ILogger
+ClientControllerBase --* IMapper
+
+ConceptClientController --|> ClientControllerBase
+ConceptClientController ..|> IConceptClientController
+ConceptClientController ..|> IConceptService
+
+EhttExtCommonProcessParamsClientController --|> ClientControllerBase
+EhttExtCommonProcessParamsClientController ..|> IEhttExtCommonProcessParamsClientController
+EhttExtCommonProcessParamsClientController ..|> IEhttExtCommonProcessParamsService
+
+GapsInCareClientController --|> ClientControllerBase
+GapsInCareClientController ..|> IGapsInCareClientController
+GapsInCareClientController ..|> IGapsInCareService
+
+MemberClientController --|> ClientControllerBase
+MemberClientController ..|> IMemberClientController
+MemberClientController ..|> IMemberService
+
+MemberCoverageClientController --|> ClientControllerBase
+MemberCoverageClientController ..|> IMemberCoverageClientController
+MemberCoverageClientController ..|> IMemberCoverageService
+
+UMemberConceptValueClientController --|> ClientControllerBase
+UMemberConceptValueClientController ..|> IUMemberConceptValueClientController
+UMemberConceptValueClientController ..|> IUMemberConceptValueService
+' STOP - Controller Relationships '
+
+' START - Model / Interface Relationships '
+  'Models.ckoltp'
+  Concept *.. UMemberConceptValue
+  Concept ..|> IConcept  
+
+  Member *.. MemberCoverage
+  Member ..|> IMember
+
+  MemberCoverage *.. Member
+  MemberCoverage ..|> IMemberCoverage
+
+  UMemberConceptValue *.. Concept
+  UMemberConceptValue ..|> IUMemberConceptValue
+
+  'Models.config'
+  EmailConfig ..|> IEmailConfig
+
+  'Models.customdb'
+  EhttExtCommonProcessParam --|> EhttExtCommonProcessParamDTO
+  EhttExtCommonProcessParam ..|> IEhttExtCommonProcessParam
+
+  T1468AssessmentManagerAnswer --|> T1468AssessmentManagerAnswerDTO
+  T1468AssessmentManagerAnswer ..|> IT1468AssessmentManagerAnswer
+  
+  T1468AssessmentManagerAssessment --|> T1468AssessmentManagerAssessmentDTO
+  T1468AssessmentManagerAssessment ..|> IT1468AssessmentManagerAssessment
+  T1468AssessmentManagerAssessment *-- T1468AssessmentManagerQuestionAnswerLink
+
+  T1468AssessmentManagerQuestion --|> T1468AssessmentManagerQuestionDTO
+  T1468AssessmentManagerQuestion ..|> IT1468AssessmentManagerQuestion
+  T1468AssessmentManagerAssessment *-- T1468AssessmentManagerQuestionAnswerLink
+
+  T1468AssessmentManagerQuestionAnswerLink --|> T1468AssessmentManagerQuestionAnswerLinkDTO
+  T1468AssessmentManagerQuestionAnswerLink ..|> IT1468AssessmentManagerQuestionAnswerLink
+  T1468AssessmentManagerQuestionAnswerLink *-- T1468AssessmentManagerAssessment
+  T1468AssessmentManagerQuestionAnswerLink *-- T1468AssessmentManagerQuestion
+
+  'Models.customModels'
+  ActiveGapsInCareConcepts ..|> IActiveGapsInCareConcepts
+  
+  ConceptObject ..|> IConceptObject
+  ConceptObject *-- StringBuilder
+
+  DateOfBirth ..|> IDateOfBirth
+  ExternalMemberIdentifier ..|> IExternalMemberIdentifier
+
+  MemberConcept ..|> IMemberConcept
+  MemberConcept *-- ExternalMemberIdentifier
+  MemberConcept *-- SubscriberIdentifier
+  MemberConcept *-- ConceptObject
+
+  SubscriberIdentifier ..|> ISubscriberIdentifier
+
+  'Models.FileTool'
+  ExcelSpreadsheet *-- DataTable
+
+  'Models'
+  APIRequest ..|> IAPIRequest
+  APIRequest ..|> StaticDetails.ApiType
+
+  APIResponse ..|> IAPIResponse
+  APIResponse ..|> HttpStatusCode
+
+' STOP - Model / Interface Relationships '
+
+' START - Service / Interface Relationships '
+  BaseService ..|> IBaseService
+  BaseService *-- IConfiguration
+  BaseService *-- ILogger
+  BaseService *-- APIResponse
+  BaseService *-- IHttpClientFactory
+  BaseService ..|> JsonConvert
+
+  ConceptService --|> BaseService
+  ConceptService ..|> IConceptService
+  ConceptService ..|> JsonConvert
+  ConceptService --|> ILogger
+  ConceptService --|> IConfiguration
+  ConceptService --|> IHttpClientFactory
+
+  EhttExtCommonProcessParamsService --|> BaseService
+  EhttExtCommonProcessParamsService ..|> IEhttExtCommonProcessParamsService
+  EhttExtCommonProcessParamsService --|> ILogger
+  EhttExtCommonProcessParamsService --|> IConfiguration
+  EhttExtCommonProcessParamsService --|> IHttpClientFactory
+
+  GapsInCareService --|> BaseService
+  GapsInCareService ..|> IGapsInCareService
+  GapsInCareService --|> ILogger
+  GapsInCareService --|> IConfiguration
+  GapsInCareService --|> IHttpClientFactory
+
+  MemberCoverageService --|> BaseService
+  MemberCoverageService ..|> IMemberCoverageService
+  MemberCoverageService --|> ILogger
+  MemberCoverageService --|> IConfiguration
+  MemberCoverageService --|> IHttpClientFactory
+
+  MemberService --|> BaseService
+  MemberService ..|> IMemberService
+  MemberService --|> ILogger
+  MemberService --|> IConfiguration
+  MemberService --|> IHttpClientFactory
+
+  UMemberConceptValueService --|> BaseService
+  UMemberConceptValueService ..|> IUMemberConceptValueService
+  UMemberConceptValueService --|> ILogger
+  UMemberConceptValueService --|> IConfiguration
+  UMemberConceptValueService --|> IHttpClientFactory
+' STOP - Service / Interface Relationships '
+
+' START - Utilities / Interface Relationships '
+  'Utilities.CustomAttributes'
+    AllowNullDisallowStringWordAttribute --|> ValidationAttribute    
+    NotZeroAttribute --|> ValidationAttribute
+  'Utilities.CustomAttributes'
+  
+  'Utilities.SwaggerFilters'
+  IgnoreDataMemberSwaggerFilter ..|> ISchemaFilter
+  IgnoreDataMemberSwaggerFilter *-- SchemaFilterContext
+  IgnoreDataMemberSwaggerFilter *-- OpenApiSchema
+  IgnoreDataMemberSwaggerFilter *-- IgnoreDataMemberAttribute
+  'Utilities.SwaggerFilters'
+
+  DataFormatting *-- Regex
+  DataFormatting *-- DataTable
+  DataFormatting *-- PropertyInfo
+  DataFormatting *-- Nullable
+  DataFormatting *-- Type
+
+  Email ..|> IEmail
+  Email *-- ILogger
+  Email *-- IConfiguration
+  Email *-- ITools
+  Email *-- IEmailConfig
+  Email *-- EmailConfig
+  Email *-- MailMessage
+  Email *-- MailAddress
+  Email *-- MailAddressCollection
+  Email *-- Attachment
+  Email *-- SmtpClient
+  Email *-- MemoryStream
+
+  ExcelParser *-- ExcelWorksheet
+  ExcelParser *-- DataTable
+  ExcelParser *-- DateColumn
+
+  FileTool ..|> IFileTool
+  FileTool *-- ILogger
+  FileTool *-- IEmail
+  FileTool *-- JToken
+  FileTool *-- JsonConvert
+  FileTool ..> Exception
+  FileTool *-- ExcelSpreadsheet
+  FileTool *-- ExcelPackage
+  FileTool *-- ExcelCellAddress
+  FileTool *-- DataTable
+  FileTool *-- ExcelParser
+  FileTool *-- EmailConfig
+  FileTool *-- FileStream
+  FileTool *-- File
+  FileTool *-- XDocument
+  FileTool *-- Directory
+
+  Tools ..|> ITools
+  Tools *-- ILogger
+  Tools *-- Exception
+' STOP - Utilities / Interface Relationships '
+
+' START - MCT.CCAlib / Relationships '
+  CCALibMappingConfig --|> Profile
+
+  CCALibMappingConfig ..> EhttExtCommonProcessParam
+  CCALibMappingConfig ..> EhttExtCommonProcessParamDTO
+  CCALibMappingConfig ..> EhttExtCommonProcessParamCreateDTO
+  CCALibMappingConfig ..> EhttExtCommonProcessParamUpdateDTO
+
+  CCALibMappingConfig ..> T1468AssessmentManagerAssessment
+  CCALibMappingConfig ..> T1468AssessmentManagerAssessmentDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerAssessmentCreateDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerAssessmentUpdateDTO
+
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestion
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionCreateDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionUpdateDTO
+
+  CCALibMappingConfig ..> T1468AssessmentManagerAnswer
+  CCALibMappingConfig ..> T1468AssessmentManagerAnswerDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerAnswerCreateDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerAnswerUpdateDTO
+
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionAnswerLink
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionAnswerLinkDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionAnswerLinkCreateDTO
+  CCALibMappingConfig ..> T1468AssessmentManagerQuestionAnswerLinkUpdateDTO
+' STOP - MCT.CCAlib / Relationships '
+
+  ResetConcept --o ConceptService
+
+@enduml

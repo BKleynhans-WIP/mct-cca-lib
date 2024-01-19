@@ -1,0 +1,95 @@
+@startuml
+title "CCAlib - ConceptClientController - Time Sequence Diagram"
+
+
+CallingSolution -> ConceptClientController
+
+activate ConceptClientController
+
+alt Get member Concept
+
+    ConceptClientController -> ConceptService : GetConceptSync<APIResponse>(memberConcept)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI --> BaseService : IConcept
+
+    deactivate ManagedCareAPI
+
+    BaseService --> ConceptService : IConcept
+
+    deactivate BaseService
+
+    ConceptService --> ConceptClientController : IConcept
+
+    deactivate ConceptService
+
+else Set member Concept
+
+    ConceptClientController -> ConceptService : SetConceptSync<APIResponse>(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI --> BaseService : success/failure
+
+    deactivate ManagedCareAPI
+
+    BaseService --> ConceptService : success/failure
+
+    deactivate BaseService
+
+    ConceptService --> ConceptClientController : success/failure
+
+    deactivate ConceptService
+
+else Reset member Concept
+
+    ConceptClientController -> ConceptService : ResetConceptSync<APIResponse>(memberIdentifier : IInternalMemberIdentifier, concept : IConceptObject)
+
+    activate ConceptService
+
+    ConceptService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : ConceptAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI --> BaseService : success/failure
+
+    deactivate ManagedCareAPI
+
+    BaseService --> ConceptService : success/failure
+
+    deactivate BaseService
+
+    ConceptService --> ConceptClientController : success/failure
+
+    deactivate ConceptService
+
+end
+
+ConceptClientController --> CallingSolution : IConcept/success/failure
+
+deactivate ConceptClientController
+
+deactivate CallingSolution
+
+@enduml

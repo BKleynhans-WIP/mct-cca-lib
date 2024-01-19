@@ -1,0 +1,63 @@
+@startuml
+title "CCAlib - GapsInCareClientController - Time Sequence Diagram"
+
+
+CallingSolution -> GapsInCareClientController
+
+activate GapsInCareClientController
+
+alt if GetMembersWithGapsInCare
+    GapsInCareClientController -> GapsInCareService : GetMembersWithGapsInCare<APIResponse>(validGapsInCare : List<string>)
+
+    activate GapsInCareService
+
+    GapsInCareService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : GapsInCareAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI --> BaseService : List<MemberConcept>
+
+    deactivate ManagedCareAPI
+
+    BaseService --> GapsInCareService : List<MemberConcept>
+
+    deactivate BaseService
+
+    GapsInCareService --> GapsInCareClientController : List<MemberConcept>
+else if GetGapsInCareForMember
+    GapsInCareClientController -> GapsInCareService : GetGapsInCareForMember<APIResponse>(memberConcept : MemberConcept, validGapsInCare : List<string>)
+
+    activate GapsInCareService
+
+    GapsInCareService -> BaseService : SendAsyncGetSync<T>(APIRequest apiRequest)
+
+    activate BaseService
+
+    BaseService -> ManagedCareAPI : GapsInCareAPI
+
+    activate ManagedCareAPI
+
+    ManagedCareAPI --> BaseService : List<ConceptObject>
+
+    deactivate ManagedCareAPI
+
+    BaseService --> GapsInCareService : List<ConceptObject>
+
+    deactivate BaseService
+
+    GapsInCareService --> GapsInCareClientController : List<ConceptObject>
+end
+
+deactivate GapsInCareService
+
+GapsInCareClientController --> CallingSolution : List<MemberConcept>/List<ConceptObject>
+
+deactivate GapsInCareClientController
+
+deactivate CallingSolution
+
+@enduml
